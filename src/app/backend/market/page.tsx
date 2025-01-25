@@ -1,14 +1,20 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import axios from 'axios';
 import { Crypto } from "@/common/common";
 
-export const Fetch  = async () :  Promise<Crypto[]> =>{
+
+
+export const Fetch  = async (currency:string) :  Promise<Crypto[]> =>{
+   
+  
+
     try {
         const resposne =await axios.get<Crypto[]>('https://api.coingecko.com/api/v3/coins/markets',{
             params:{
-                vs_currency:`${currency}`
+                vs_currency:currency,
             }
-        })
+        },
+
+)
         return resposne.data;
         
     } catch (error) {
